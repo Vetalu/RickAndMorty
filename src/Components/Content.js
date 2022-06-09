@@ -38,28 +38,46 @@ export default function Content() {
             favorite: false,
         }]})
     }
+
     return (
         <div className="Board">
         <ModalWindow />
             {mapCharacter.map((character) => {
-                const list = (
-                <div 
-                    onClick={(e) => click(e)}
-                    className="character" 
-                    key={character.url}
-                    id={counter}
-                    >
-                    <div>
-                        <img id={counter} src={character.image} />
+                const list = mapCharacter.length > 1 
+                ? (
+                    <div 
+                        onClick={(e) => click(e)}
+                        className="character" 
+                        key={character.url}
+                        id={counter}
+                        >
+                        <div>
+                            <img id={counter} src={character.image} />
+                        </div>
+                        <div id={counter}>
+                            {character.name}
+                            <br/>
+                            {character.status}
+                        </div>
                     </div>
-                    <div id={counter}>
-                        {character.name}
-                        <br/>
-                        {character.status}
-                    </div>
-                </div>
                 
-            );
+                ) : (
+                    <div 
+                        className="character" 
+                        key={character.id || character.status}
+                        id={counter}
+                        >
+                        <div>
+                            <img id={counter} src={character.image} />
+                        </div>
+                        <div id={counter}>
+                            {character.name}
+                            <br/>
+                            {character.status}
+                        </div>
+                    </div>
+                
+                );
             counter++
             return list;
             })}

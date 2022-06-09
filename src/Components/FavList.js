@@ -12,7 +12,10 @@ export default function FavList() {
     }
     const dispatch = useDispatch();
     function listCharacter () {
-        const storage = JSON.parse(localStorage.getItem("favorite"))
+        let storage = JSON.parse(localStorage.getItem("favorite"));
+        if(storage.length > 1) {
+            storage.pop();
+        }
         dispatch({type: "MAPING", payload: storage})
     }
     return (
